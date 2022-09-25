@@ -1,13 +1,11 @@
 import {Router} from "express";
 import {check, body} from "express-validator";
 
-import { getUser, postUser } from "../controllers/register.js";
+import {postUser } from "../controllers/register.js";
 import esEmailValido from "../helpers/dbValidator.js";
 import { validarCampos } from "../middlewares/validarcampos.js";
 
 const routerRegister = Router();
-
-routerRegister.get("/", getUser);
 
 routerRegister.post("/",[
     check("nombreUsuario", "El nombre de usuario es requerido").not().isEmpty(),

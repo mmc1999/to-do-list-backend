@@ -18,6 +18,11 @@ const getTask = async (req, res) => {
 
 const postTask = async (req, res) => {
     const {tarea, complete=false} = req.body;
+    if(!tarea){
+        return res.json({
+            msg:"fixed bug about sending tasks without content and error message"
+        })
+    }
     const id = req.header("id");
     const usuario = await Usuario.findById(id);
     const task = new Task({tarea, complete, id: usuario._id});
